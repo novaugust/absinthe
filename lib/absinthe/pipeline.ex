@@ -57,6 +57,7 @@ defmodule Absinthe.Pipeline do
       {Phase.Telemetry, Keyword.put(options, :event, [:execute, :operation, :start])},
       # Parse Document
       {Phase.Parse, options},
+      {Phase.Document.Validation.ExecutableDefinitions, options},
       # Convert to Blueprint
       {Phase.Blueprint, options},
       # Find Current Operation (if any)
