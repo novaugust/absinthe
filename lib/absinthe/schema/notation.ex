@@ -1416,9 +1416,11 @@ defmodule Absinthe.Schema.Notation do
   ```
   """
   defmacro import_types(type_module_ast, opts \\ []) do
+    env = __CALLER__
+
     type_module_ast
-    |> expand_aliases(__CALLER__)
-    |> do_import_types(__CALLER__, opts)
+    |> Macro.expand(env)
+    |> do_import_types(env, opts)
   end
 
   defp expand_aliases(ast, env) do
